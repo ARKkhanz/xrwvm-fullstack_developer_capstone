@@ -151,8 +151,8 @@ STATICFILES_DIRS = [
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    ".proxy.cognitiveclass.ai",
+    "amarson212-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai",
 ]
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.proxy.cognitiveclass.ai",
+    "https://amarson212-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai",
 ]

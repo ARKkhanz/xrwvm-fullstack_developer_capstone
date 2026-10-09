@@ -1,0 +1,5 @@
+Watching for file changes with StatReloader
+[09/Oct/2026 14:33:08] "GET / HTTP/1.1" 200 2679
+[09/Oct/2026 14:33:08] "GET /static/style.css HTTP/1.1" 200 1918
+[09/Oct/2026 14:33:08] "GET /static/bootstrap.min.css HTTP/1.1" 200 155800
+[09/Oct/2026 14:33:09] "GET /static/car_dealership.jpg HTTP/1.1" 200 263696
