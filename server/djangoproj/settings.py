@@ -168,3 +168,15 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "frontend", "build"),
     os.path.join(BASE_DIR, "frontend", "build", "static"),
 ]
+
+# BEGIN DOCKER LAB APPLICATION HOST
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "amarson212-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai",
+    "amarson212-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://amarson212-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai",
+    "https://amarson212-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai",
+]

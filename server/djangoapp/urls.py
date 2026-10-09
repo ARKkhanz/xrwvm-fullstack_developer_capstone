@@ -10,3 +10,8 @@ urlpatterns = [
     path("register", views.registration, name="register"),
     path("session", views.session_user, name="session"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# BEGIN CAR INVENTORY ROUTE
+urlpatterns = [
+    path("get_cars", views.get_cars, name="getcars"),
+] + urlpatterns

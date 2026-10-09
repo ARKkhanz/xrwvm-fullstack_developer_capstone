@@ -105,3 +105,20 @@ def registration(request):
     return JsonResponse(
         {"userName": user.username, "status": "Authenticated"}, status=201
     )
+
+# BEGIN CAR INVENTORY VIEW
+from .models import CarMake, CarModel
+from .populate import initiate
+
+
+def get_cars(request):
+    if request.method != "GET":
+        return JsonResponse({"error": "Use GET to retrieve cars."}, status=405)
+    if not CarModel.objects.exists():
+        initiate()
+    car_models = CarModel.objects.select_related("car_make").order_by("id")
+    cars = [
+        {"CarModel": model.name, "CarMake": model.car_make.name}
+        for model in car_models
+    ]
+    return JsonResponse({"CarModels": cars})
