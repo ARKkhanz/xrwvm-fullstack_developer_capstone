@@ -1,0 +1,6 @@
+curl -sS --max-time 20 -X GET -b /tmp/tmpn5xptrzi/session.cookies -c /tmp/tmpn5xptrzi/session.cookies http://localhost:8000/djangoapp/session -w '
+HTTP_STATUS:%{http_code}
+'
+
+{"userName": "demo_1791557681916824411"}
+HTTP_STATUS:200

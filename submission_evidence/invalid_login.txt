@@ -1,0 +1,6 @@
+curl -sS --max-time 20 -X POST -b /tmp/tmpn5xptrzi/session.cookies -c /tmp/tmpn5xptrzi/session.cookies -H 'Content-Type: application/json' -d '{"userName": "demo_1791557681916824411", "password": "WrongPassword"}' http://localhost:8000/djangoapp/login -w '
+HTTP_STATUS:%{http_code}
+'
+
+{"userName": "", "error": "Invalid username or password."}
+HTTP_STATUS:401

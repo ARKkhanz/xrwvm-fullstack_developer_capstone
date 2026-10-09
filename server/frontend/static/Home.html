@@ -5,24 +5,62 @@
   <link rel="stylesheet" href="static/style.css">
   <link rel="stylesheet" href="static/bootstrap.min.css">
 <script>
-
-const logout = async (e) => {
-//Include the code for logout here.
-};
-
-let checkSession = ()=>{
-  let curr_user = sessionStorage.getItem("username");
-
-  if (curr_user && curr_user !== "") {
-    document.getElementById("loginlogout").innerHTML = 
-    '<span class="homepage_links">' + curr_user +'</span>' +
-    '<a class="homepage_links" onclick="logout()" href="/">Logout</a>'
-  } else {
-    document.getElementById("loginlogout").innerHTML = 
-    '<a class="homepage_links" href="/login">Login</a>'+
-    '<a class="homepage_links"  href="/register">Register</a>'
+async function logout(event) {
+  if (event) event.preventDefault();
+  try {
+    const response = await fetch("/djangoapp/logout", {
+      method: "GET", credentials: "same-origin"
+    });
+    const json = await response.json();
+    if (!response.ok || json.userName !== "") {
+      throw new Error("The user could not be logged out.");
+    }
+    const username = sessionStorage.getItem("username") || "user";
+    sessionStorage.removeItem("username");
+    alert("Logging out " + username + "...");
+    window.location.href = "/";
+  } catch (error) {
+    alert(error.message);
   }
- }
+}
+
+async function checkSession() {
+  const container = document.getElementById("loginlogout");
+  try {
+    const response = await fetch("/djangoapp/session", {
+      credentials: "same-origin"
+    });
+    if (!response.ok) throw new Error("Session check failed.");
+    const json = await response.json();
+    container.replaceChildren();
+
+    if (json.userName) {
+      sessionStorage.setItem("username", json.userName);
+      const name = document.createElement("span");
+      name.className = "homepage_links";
+      name.textContent = json.userName;
+      const link = document.createElement("a");
+      link.className = "homepage_links";
+      link.href = "/";
+      link.textContent = "Logout";
+      link.addEventListener("click", logout);
+      container.append(name, link);
+    } else {
+      sessionStorage.removeItem("username");
+      for (const [label, href] of [
+        ["Login", "/login/"], ["Register", "/register/"]
+      ]) {
+        const link = document.createElement("a");
+        link.className = "homepage_links";
+        link.href = href;
+        link.textContent = label;
+        container.appendChild(link);
+      }
+    }
+  } catch (error) {
+    container.textContent = "Unable to check login. Refresh to retry.";
+  }
+}
 </script>
 </head>
 <body onload="checkSession()">

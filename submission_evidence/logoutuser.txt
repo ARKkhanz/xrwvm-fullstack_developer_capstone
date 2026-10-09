@@ -1,0 +1,6 @@
+curl -sS --max-time 20 -X GET -b /tmp/tmpn5xptrzi/session.cookies -c /tmp/tmpn5xptrzi/session.cookies http://localhost:8000/djangoapp/logout -w '
+HTTP_STATUS:%{http_code}
+'
+
+{"userName": ""}
+HTTP_STATUS:200

@@ -1,74 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import "../UserManagement.css";
 
-import "./Login.css";
-import Header from '../Header/Header';
-
-const Login = ({ onClose }) => {
-
+export default function LoginPanel() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [open,setOpen] = useState(true)
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
 
-  let login_url = window.location.origin+"/djangoapp/login";
-
-  const login = async (e) => {
-    e.preventDefault();
-
-    const res = await fetch(login_url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            "userName": userName,
-            "password": password
-        }),
-    });
-    
-    const json = await res.json();
-    if (json.status != null && json.status === "Authenticated") {
-        sessionStorage.setItem('username', json.userName);
-        setOpen(false);        
+  async function signIn(event) {
+    event.preventDefault();
+    if (busy) return;
+    setError("");
+    if (!userName.trim() || !password.trim()) {
+      setError("Enter your username and password.");
+      return;
     }
-    else {
-      alert("The user could not be authenticated.")
+    setBusy(true);
+    try {
+      const response = await fetch("/djangoapp/login", {
+        method: "POST", credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userName: userName.trim(), password })
+      });
+      const json = await response.json();
+      if (!response.ok || json.status !== "Authenticated") {
+        throw new Error(json.error || "Login failed.");
+      }
+      sessionStorage.setItem("username", json.userName);
+      window.location.href = "/";
+    } catch (err) {
+      setError(err.message || "Unable to connect. Please try again.");
+    } finally {
+      setBusy(false);
     }
-};
-
-  if (!open) {
-    window.location.href = "/";
-  };
-  
+  }
 
   return (
-    <div>
-      <Header/>
-    <div onClick={onClose}>
-      <div
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-        className='modalContainer'
-      >
-          <form className="login_panel" style={{}} onSubmit={login}>
-              <div>
-              <span className="input_field">Username </span>
-              <input type="text"  name="username" placeholder="Username" className="input_field" onChange={(e) => setUserName(e.target.value)}/>
-              </div>
-              <div>
-              <span className="input_field">Password </span>
-              <input name="psw" type="password"  placeholder="Password" className="input_field" onChange={(e) => setPassword(e.target.value)}/>            
-              </div>
-              <div>
-              <input className="action_button" type="submit" value="Login"/>
-              <input className="action_button" type="button" value="Cancel" onClick={()=>setOpen(false)}/>
-              </div>
-              <a className="loginlink" href="/register">Register Now</a>
-          </form>
-      </div>
-    </div>
-    </div>
+    <main className="auth-page">
+      <section className="auth-card">
+        <a href="/">Back to Home</a>
+        <h1>Login</h1>
+        <form onSubmit={signIn}>
+          <label htmlFor="login-name">Username</label>
+          <input id="login-name" type="text" autoComplete="username"
+            required value={userName} disabled={busy}
+            onChange={e => setUserName(e.target.value)} />
+          <label htmlFor="login-password">Password</label>
+          <input id="login-password" type="password"
+            autoComplete="current-password" required
+            value={password} disabled={busy}
+            onChange={e => setPassword(e.target.value)} />
+          <p className="auth-error" role="alert">{error}</p>
+          <button type="submit" disabled={busy}>
+            {busy ? "Logging in..." : "Login"}
+          </button>
+        </form>
+        <p>New customer? <a href="/register/">Register</a></p>
+      </section>
+    </main>
   );
-};
-
-export default Login;
+}

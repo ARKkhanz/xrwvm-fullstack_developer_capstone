@@ -156,3 +156,15 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     "https://amarson212-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai",
 ]
+
+# BEGIN MODULE 2 FRONTEND CONFIGURATION
+TEMPLATES[0]["DIRS"] = [
+    os.path.join(BASE_DIR, "frontend", "static"),
+    os.path.join(BASE_DIR, "frontend", "build"),
+    os.path.join(BASE_DIR, "frontend", "build", "static"),
+]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "frontend", "static"),
+    os.path.join(BASE_DIR, "frontend", "build"),
+    os.path.join(BASE_DIR, "frontend", "build", "static"),
+]

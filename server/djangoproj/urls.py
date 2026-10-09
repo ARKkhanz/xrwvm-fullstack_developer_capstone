@@ -35,3 +35,9 @@ urlpatterns = [
     path("contact/", TemplateView.as_view(template_name="Contact.html"),
          name="contact"),
 ] + urlpatterns
+
+# BEGIN MODULE 2 FRONTEND ROUTES
+urlpatterns = [
+    path("login/", TemplateView.as_view(template_name="index.html")),
+    path("register/", TemplateView.as_view(template_name="index.html")),
+] + urlpatterns
