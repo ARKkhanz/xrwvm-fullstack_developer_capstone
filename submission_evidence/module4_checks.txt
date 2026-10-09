@@ -1,0 +1,7 @@
+PASS: React page /dealers/
+PASS: React page /dealer/29
+PASS: React page /postreview/29
+PASS: All 50 dealerships returned.
+PASS: Kansas state filter.
+PASS: Car choices available.
+PASS: Dealer reviews include sentiment.

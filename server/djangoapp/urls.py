@@ -27,3 +27,5 @@ urlpatterns = [
          name="dealer_reviews"),
     path("add_review", views.add_review, name="add_review"),
 ] + urlpatterns
+
+urlpatterns = [path("get_dealers/", views.get_dealerships, name="get_dealers_slash"),] + urlpatterns

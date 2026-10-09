@@ -1,0 +1,59 @@
+/* Responsive dealership pages. */
+.bestcars-header {
+  display:flex;flex-wrap:wrap;align-items:center;gap:24px;
+  padding:22px 5%;background:#0e7490;color:white;
+}
+.bestcars-header a {color:white;text-decoration:none}
+.bestcars-brand {font-size:26px;font-weight:700}
+.bestcars-header nav,.bestcars-account {
+  display:flex;flex-wrap:wrap;align-items:center;gap:18px;
+}
+.bestcars-account {margin-left:auto}
+.bestcars-header button {
+  background:white;color:#155e75;border:0;border-radius:6px;padding:8px 15px;
+}
+.bestcars-main {
+  max-width:1200px;margin:35px auto;padding:0 24px 40px;
+  font-family:Arial,sans-serif;color:#243447;line-height:1.6;
+}
+.bestcars-main h1 {color:#155e75}
+.bestcars-main a {color:#0e7490}
+.bestcars-main select,.bestcars-main input,.bestcars-main textarea {
+  padding:10px;border:1px solid #94a3b8;border-radius:6px;font:inherit;
+}
+.bestcars-main label {display:block;font-weight:600;margin:14px 0 5px}
+.bestcars-table-wrap {overflow-x:auto;margin-top:24px}
+.bestcars-table {width:100%;border-collapse:collapse;background:white}
+.bestcars-table th,.bestcars-table td {
+  text-align:left;padding:14px;border-bottom:1px solid #e2e8f0;
+}
+.bestcars-table th {background:#ecfeff}
+.bestcars-table tbody tr:hover {background:#f8fafc}
+.bestcars-main .bestcars-button {
+  display:inline-block;background:#0e7490;color:white;border:0;
+  padding:10px 16px;border-radius:6px;text-decoration:none;cursor:pointer;
+}
+.bestcars-reviews {
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;
+}
+.bestcars-card {border:1px solid #e2e8f0;border-radius:12px;padding:22px}
+.bestcars-sentiment {display:flex;align-items:center;gap:12px;text-transform:capitalize}
+.bestcars-sentiment img {width:42px;height:42px;object-fit:contain}
+.bestcars-review-text {white-space:pre-wrap;overflow-wrap:anywhere}
+.bestcars-form {max-width:650px}
+.bestcars-form fieldset {border:1px solid #cbd5e1;border-radius:12px;padding:24px}
+.bestcars-form input,.bestcars-form select,.bestcars-form textarea {
+  width:100%;box-sizing:border-box;
+}
+.bestcars-form button {margin-top:22px}
+.bestcars-error {background:#fef2f2;color:#b91c1c;padding:14px;border-radius:6px}
+.bestcars-header a:focus-visible,.bestcars-main a:focus-visible,
+.bestcars-header button:focus-visible,.bestcars-main input:focus-visible,
+.bestcars-main textarea:focus-visible,.bestcars-main select:focus-visible,
+.bestcars-main button:focus-visible {outline:3px solid #f59e0b;outline-offset:3px}
+button:disabled {opacity:.6;cursor:wait}
+@media(max-width:600px) {
+  .bestcars-header {gap:14px}
+  .bestcars-account {margin-left:0}
+  .bestcars-main {padding:0 14px 30px}
+}

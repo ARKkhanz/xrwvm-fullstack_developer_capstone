@@ -41,3 +41,10 @@ urlpatterns = [
     path("login/", TemplateView.as_view(template_name="index.html")),
     path("register/", TemplateView.as_view(template_name="index.html")),
 ] + urlpatterns
+
+# BEGIN MODULE 4 PAGE ROUTES
+urlpatterns = [
+    path("dealers/", TemplateView.as_view(template_name="index.html")),
+    path("dealer/<int:dealer_id>", TemplateView.as_view(template_name="index.html")),
+    path("postreview/<int:dealer_id>", TemplateView.as_view(template_name="index.html")),
+] + urlpatterns
