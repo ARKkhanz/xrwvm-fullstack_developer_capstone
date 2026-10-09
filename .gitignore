@@ -137,3 +137,4 @@ server/frontend/node_modules/
 submission_evidence/module2-backup-*/
 
 submission_evidence/models-backup-*/
+container-db.sqlite3

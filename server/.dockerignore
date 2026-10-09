@@ -1,0 +1,10 @@
+djangoenv/
+.venv/
+**/__pycache__/
+**/*.pyc
+frontend/node_modules/
+database/
+djangoapp/.env
+.git/
+db.sqlite3
+static/

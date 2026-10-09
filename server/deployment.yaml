@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dealership
+  labels:
+    run: dealership
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: dealership
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        run: dealership
+    spec:
+      containers:
+        - name: dealership
+          image: us.icr.io/sn-labs-amarson212/dealership:module5
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          env:
+            - name: CONTAINER_DEPLOYMENT
+              value: "1"
+            - name: DJANGO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: dealership-django
+                  key: secret-key
+            - name: backend_url
+              value: "https://amarson212-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai"
+            - name: sentiment_analyzer_url
+              value: "https://sentianalyzer.2fq6ry55gl1m.us-south.codeengine.appdomain.cloud/"
+          readinessProbe:
+            tcpSocket:
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 5

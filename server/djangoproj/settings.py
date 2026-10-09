@@ -200,3 +200,23 @@ CSRF_TRUSTED_ORIGINS = [
         "s-us-east-0.proxy.cognitiveclass.ai"
     ),
 ]
+
+# BEGIN CONTAINER CONFIGURATION
+if os.environ.get("CONTAINER_DEPLOYMENT") == "1":
+    DEBUG = False
+    SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
+    MIDDLEWARE.insert(
+        1, "whitenoise.middleware.WhiteNoiseMiddleware"
+    )
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "frontend", "static"),
+        os.path.join(BASE_DIR, "frontend", "build", "static"),
+    ]
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        },
+    }
