@@ -1,68 +1,82 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <!-- Link the style sheet here -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us | Best Cars</title>
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    body { background:#f5f7fa; color:#243246; margin:0; }
+    main { max-width:1100px; margin:32px auto; padding:0 20px; }
+    .about-header,.contact-header { margin-bottom:28px; }
+    .team-grid,.contact-grid {
+      display:grid; gap:24px;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    }
+    .team-card,.contact-card {
+      background:white; border-radius:12px; padding:24px;
+      box-shadow:0 3px 16px #00000012;
+    }
+    .team-card img {
+      width:100%; height:240px; object-fit:cover;
+      border-radius:8px; margin-bottom:18px;
+    }
+    .contact-image {
+      width:100%; height:260px; object-fit:cover;
+      border-radius:12px; margin-bottom:24px;
+    }
+    h1,h2,h3 { color:#183153; }
+    a { overflow-wrap:anywhere; }
+    .navbar .active { font-weight:bold; text-decoration:underline; }
+    footer { text-align:center; padding:28px 16px; color:#526174; }
+  </style>
 </head>
-<div>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
-    <div class="container-fluid">
-      <h2 style="padding-right: 5%;">Dealerships</h2>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" style="font-size: larger;" href="/about">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" style="font-size: larger;" href="/contact">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  
-    <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
-      <div class="banner" name="about-header">
-      <!-- Insert header information here -->
-      </div>
-      <div style="display: flex;flex-direction: row; margin:auto">
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person1</p>
-          <p>Person1 Title</p>
-          <p class="card-text">Some text that explains the person1 in about 2 short sentences</p>
-          <p>person1@example.com</p>
-        </div>
-      </div>
-
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person2</p>
-          <p>Person2 Title</p>
-          <p class="card-text">Some text that explains the person2 in about 2 short sentences</p>
-          <p>person2@example.com</p>
-        </div>
-      </div>
-
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person3</p>
-          <p>Person3 Title</p>
-          <p class="card-text">Some text that explains the person3 in about 2 short sentences</p>
-          <p>person3@example.com</p>
-        </div>
-      </div>
-    </div>
-    </div>
-    </div>
-    
-</div>
-
+<body>
+<nav class="navbar navbar-expand navbar-dark bg-dark"><div class="container flex-wrap"><a class="navbar-brand" href="/">Best Cars</a><ul class="navbar-nav flex-wrap"><li class="nav-item"><a class="nav-link" href="/">Home</a></li><li class="nav-item"><a class="nav-link active" href="/about/" aria-current="page">About Us</a></li><li class="nav-item"><a class="nav-link" href="/contact/">Contact Us</a></li></ul></div></nav>
+<main>
+<section class="about-header">
+  <h1>About Us</h1>
+  <p>Welcome to Best Cars dealership, home to the best cars in North
+  America. We deal in selling domestic and imported cars at reasonable
+  prices.</p>
+  <p>Our team helps customers compare vehicles, understand financing,
+  and choose a car that fits their needs. We value transparent pricing,
+  dependable service, and long-term customer relationships.</p>
+</section>
+<section aria-labelledby="team-heading">
+  <h2 id="team-heading">Meet Our Team</h2>
+  <div class="team-grid">
+    <article class="team-card">
+      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&amp;auto=format&amp;fit=crop"
+           alt="Portrait representing Daniel Carter">
+      <h3>Daniel Carter</h3>
+      <p><strong>General Manager</strong></p>
+      <p>Daniel oversees dealership operations and helps our team deliver
+      a reliable, welcoming experience for every customer.</p>
+      <a href="mailto:daniel.carter@bestcars.example">daniel.carter@bestcars.example</a>
+    </article>
+    <article class="team-card">
+      <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&amp;auto=format&amp;fit=crop"
+           alt="Portrait representing Sophia Bennett">
+      <h3>Sophia Bennett</h3>
+      <p><strong>Sales Manager</strong></p>
+      <p>Sophia supports vehicle selection, explains purchasing options,
+      and answers questions about our domestic and imported cars.</p>
+      <a href="mailto:sophia.bennett@bestcars.example">sophia.bennett@bestcars.example</a>
+    </article>
+    <article class="team-card">
+      <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&amp;auto=format&amp;fit=crop"
+           alt="Portrait representing Michael Brooks">
+      <h3>Michael Brooks</h3>
+      <p><strong>Service Manager</strong></p>
+      <p>Michael coordinates inspections, maintenance appointments,
+      and after-sales assistance to keep customers on the road.</p>
+      <a href="mailto:michael.brooks@bestcars.example">michael.brooks@bestcars.example</a>
+    </article>
+  </div>
+</section>
+</main>
+<footer>Best Cars dealership — Customer care you can count on.</footer>
+</body>
 </html>

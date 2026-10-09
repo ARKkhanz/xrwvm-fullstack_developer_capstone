@@ -136,3 +136,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = []
 
+
+# BEGIN MODULE 1 STATIC PAGE CONFIGURATION
+import os
+
+TEMPLATES[0]["DIRS"] = [
+    os.path.join(BASE_DIR, "frontend", "static")
+]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "frontend", "static")
+]
+
+# Permit localhost and the Skills Network application proxy.
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    ".proxy.cognitiveclass.ai",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.proxy.cognitiveclass.ai",
+]

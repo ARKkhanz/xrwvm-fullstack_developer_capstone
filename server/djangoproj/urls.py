@@ -24,3 +24,14 @@ urlpatterns = [
     path('djangoapp/', include('djangoapp.urls')),
     path('', TemplateView.as_view(template_name="Home.html")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# BEGIN MODULE 1 STATIC PAGE ROUTES
+from django.urls import path
+from django.views.generic import TemplateView
+
+urlpatterns = [
+    path("about/", TemplateView.as_view(template_name="About.html"),
+         name="about"),
+    path("contact/", TemplateView.as_view(template_name="Contact.html"),
+         name="contact"),
+] + urlpatterns

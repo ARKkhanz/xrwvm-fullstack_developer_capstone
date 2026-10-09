@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+server/djangoenv/
+*.pyc
+*.sqlite3
+submission_evidence/module1-backup-*/

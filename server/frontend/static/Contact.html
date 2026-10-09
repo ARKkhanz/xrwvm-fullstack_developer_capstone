@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us | Best Cars</title>
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    body { background:#f5f7fa; color:#243246; margin:0; }
+    main { max-width:1100px; margin:32px auto; padding:0 20px; }
+    .about-header,.contact-header { margin-bottom:28px; }
+    .team-grid,.contact-grid {
+      display:grid; gap:24px;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    }
+    .team-card,.contact-card {
+      background:white; border-radius:12px; padding:24px;
+      box-shadow:0 3px 16px #00000012;
+    }
+    .team-card img {
+      width:100%; height:240px; object-fit:cover;
+      border-radius:8px; margin-bottom:18px;
+    }
+    .contact-image {
+      width:100%; height:260px; object-fit:cover;
+      border-radius:12px; margin-bottom:24px;
+    }
+    h1,h2,h3 { color:#183153; }
+    a { overflow-wrap:anywhere; }
+    .navbar .active { font-weight:bold; text-decoration:underline; }
+    footer { text-align:center; padding:28px 16px; color:#526174; }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-dark bg-dark"><div class="container flex-wrap"><a class="navbar-brand" href="/">Best Cars</a><ul class="navbar-nav flex-wrap"><li class="nav-item"><a class="nav-link" href="/">Home</a></li><li class="nav-item"><a class="nav-link" href="/about/">About Us</a></li><li class="nav-item"><a class="nav-link active" href="/contact/" aria-current="page">Contact Us</a></li></ul></div></nav>
+<main>
+<section class="contact-header">
+  <h1>Contact Us</h1>
+  <p>Have a question about a vehicle, financing, or servicing?
+  Our Best Cars team is here to help.</p>
+</section>
+<img class="contact-image"
+     src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&amp;auto=format&amp;fit=crop"
+     alt="Car representing the Best Cars dealership">
+<div class="contact-grid">
+  <section class="contact-card">
+    <h2>Visit Our Dealership</h2>
+    <address>
+      Best Cars Dealership<br>
+      1250 Grand Boulevard<br>
+      Kansas City, MO 64106<br>
+      United States
+    </address>
+    <h3>Opening Hours</h3>
+    <p>Monday–Friday: 9:00 AM–6:00 PM<br>
+       Saturday: 10:00 AM–4:00 PM<br>
+       Sunday: Closed</p>
+  </section>
+  <section class="contact-card">
+    <h2>Customer Support</h2>
+    <p>Phone: <a href="tel:+18165550123">+1 (816) 555-0123</a></p>
+    <p>Email: <a href="mailto:support@bestcars.example">support@bestcars.example</a></p>
+    <p>Sales: <a href="mailto:sales@bestcars.example">sales@bestcars.example</a></p>
+    <p>Service: <a href="mailto:service@bestcars.example">service@bestcars.example</a></p>
+    <p>Website: <a href="/">Best Cars home page</a></p>
+  </section>
+</div>
+</main>
+<footer>Best Cars dealership — Customer care you can count on.</footer>
+</body>
+</html>
