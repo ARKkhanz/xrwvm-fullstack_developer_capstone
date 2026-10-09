@@ -26,8 +26,6 @@ urlpatterns = [
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # BEGIN MODULE 1 STATIC PAGE ROUTES
-from django.urls import path
-from django.views.generic import TemplateView
 
 urlpatterns = [
     path("about/", TemplateView.as_view(template_name="About.html"),
@@ -44,7 +42,16 @@ urlpatterns = [
 
 # BEGIN MODULE 4 PAGE ROUTES
 urlpatterns = [
-    path("dealers/", TemplateView.as_view(template_name="index.html")),
-    path("dealer/<int:dealer_id>", TemplateView.as_view(template_name="index.html")),
-    path("postreview/<int:dealer_id>", TemplateView.as_view(template_name="index.html")),
+    path(
+        "dealers/",
+        TemplateView.as_view(
+            template_name="index.html")),
+    path(
+        "dealer/<int:dealer_id>",
+        TemplateView.as_view(
+            template_name="index.html")),
+    path(
+        "postreview/<int:dealer_id>",
+        TemplateView.as_view(
+            template_name="index.html")),
 ] + urlpatterns

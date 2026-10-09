@@ -1,3 +1,9 @@
+from .restapis import get_request, analyze_review_sentiments, post_review
+from django.views.decorators.http import require_GET, require_POST
+import requests
+from urllib.parse import quote
+from .populate import initiate
+from .models import CarModel
 import json
 import logging
 
@@ -91,12 +97,17 @@ def registration(request):
             {"userName": username, "error": "Already Registered"}, status=409
         )
     if User.objects.filter(email__iexact=email).exists():
-        return JsonResponse({"error": "Email is already registered."}, status=409)
+        return JsonResponse(
+            {"error": "Email is already registered."}, status=409
+        )
 
     try:
         user = User.objects.create_user(
-            username=username, password=password,
-            first_name=first_name, last_name=last_name, email=email,
+            username=username,
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
         )
     except IntegrityError:
         return JsonResponse({"error": "Already Registered"}, status=409)
@@ -106,9 +117,8 @@ def registration(request):
         {"userName": user.username, "status": "Authenticated"}, status=201
     )
 
+
 # BEGIN CAR INVENTORY VIEW
-from .models import CarMake, CarModel
-from .populate import initiate
 
 
 def get_cars(request):
@@ -123,17 +133,17 @@ def get_cars(request):
     ]
     return JsonResponse({"CarModels": cars})
 
+
 # BEGIN BACKEND PROXY VIEWS
-from urllib.parse import quote
-import requests
-from django.views.decorators.http import require_GET, require_POST
-from .restapis import get_request, analyze_review_sentiments, post_review
 
 
 def proxy_error(error):
     logger.warning("Backend service request failed: %s", error)
     return JsonResponse(
-        {"status": 502, "message": "A backend service is unavailable. Please retry."},
+        {
+            "status": 502,
+            "message": ("A backend service is unavailable. " "Please retry."),
+        },
         status=502,
     )
 

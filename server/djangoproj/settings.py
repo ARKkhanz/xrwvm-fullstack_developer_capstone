@@ -90,7 +90,10 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME':
-        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        (
+            'django.contrib.auth.password_validation.UserAttributeSi'
+            'milarityValidator'
+        ),
     },
     {
         'NAME':
@@ -138,7 +141,6 @@ STATICFILES_DIRS = []
 
 
 # BEGIN MODULE 1 STATIC PAGE CONFIGURATION
-import os
 
 TEMPLATES[0]["DIRS"] = [
     os.path.join(BASE_DIR, "frontend", "static")
@@ -151,10 +153,16 @@ STATICFILES_DIRS = [
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "amarson212-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai",
+    (
+        "amarson212-8000.theianext-0-labs-prod-misc-tools-us-eas"
+        "t-0.proxy.cognitiveclass.ai"
+    ),
 ]
 CSRF_TRUSTED_ORIGINS = [
-    "https://amarson212-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai",
+    (
+        "https://amarson212-8000.theianext-0-labs-prod-misc-tool"
+        "s-us-east-0.proxy.cognitiveclass.ai"
+    ),
 ]
 
 # BEGIN MODULE 2 FRONTEND CONFIGURATION
@@ -173,10 +181,22 @@ STATICFILES_DIRS = [
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "amarson212-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai",
-    "amarson212-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai",
+    (
+        "amarson212-8000.theiadockernext-1-labs-prod-theiak8s-4-"
+        "tor01.proxy.cognitiveclass.ai"
+    ),
+    (
+        "amarson212-8000.theianext-0-labs-prod-misc-tools-us-eas"
+        "t-0.proxy.cognitiveclass.ai"
+    ),
 ]
 CSRF_TRUSTED_ORIGINS = [
-    "https://amarson212-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai",
-    "https://amarson212-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai",
+    (
+        "https://amarson212-8000.theiadockernext-1-labs-prod-the"
+        "iak8s-4-tor01.proxy.cognitiveclass.ai"
+    ),
+    (
+        "https://amarson212-8000.theianext-0-labs-prod-misc-tool"
+        "s-us-east-0.proxy.cognitiveclass.ai"
+    ),
 ]
