@@ -1,0 +1,6 @@
+curl -sS --max-time 30 -X GET http://localhost:3030/fetchReviews/dealer/29 -w '
+HTTP_STATUS:%{http_code}
+'
+
+[{"_id":"6ac904946dae536a32f3db83","id":3,"name":"Lion Reames","dealership":29,"review":"Expanded global groupware","purchase":true,"purchase_date":"10/20/2020","car_make":"Mazda","car_model":"MX-5","car_year":2003,"__v":0}]
+HTTP_STATUS:200

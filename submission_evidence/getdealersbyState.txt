@@ -1,0 +1,6 @@
+curl -sS --max-time 30 -X GET http://localhost:3030/fetchDealers/Kansas -w '
+HTTP_STATUS:%{http_code}
+'
+
+[{"_id":"6ac904946dae536a32f3db55","id":8,"city":"Topeka","state":"Kansas","address":"288 Larry Place","zip":"66642","lat":"39.0429","long":"-95.7697","short_name":"Bytecard","full_name":"Bytecard Car Dealership","__v":0}]
+HTTP_STATUS:200
