@@ -122,3 +122,80 @@ def get_cars(request):
         for model in car_models
     ]
     return JsonResponse({"CarModels": cars})
+
+# BEGIN BACKEND PROXY VIEWS
+from urllib.parse import quote
+import requests
+from django.views.decorators.http import require_GET, require_POST
+from .restapis import get_request, analyze_review_sentiments, post_review
+
+
+def proxy_error(error):
+    logger.warning("Backend service request failed: %s", error)
+    return JsonResponse(
+        {"status": 502, "message": "A backend service is unavailable. Please retry."},
+        status=502,
+    )
+
+
+@require_GET
+def get_dealerships(request, state="All"):
+    endpoint = "/fetchDealers"
+    if state != "All":
+        endpoint += "/" + quote(state, safe="")
+    try:
+        dealers = get_request(endpoint)
+        return JsonResponse({"status": 200, "dealers": dealers})
+    except (requests.RequestException, ValueError) as error:
+        return proxy_error(error)
+
+
+@require_GET
+def get_dealer_details(request, dealer_id):
+    try:
+        dealer = get_request("/fetchDealer/" + str(dealer_id))
+        return JsonResponse({"status": 200, "dealer": dealer})
+    except requests.HTTPError as error:
+        if error.response is not None and error.response.status_code == 404:
+            return JsonResponse(
+                {"status": 404, "message": "Dealer not found."}, status=404
+            )
+        return proxy_error(error)
+    except (requests.RequestException, ValueError) as error:
+        return proxy_error(error)
+
+
+@require_GET
+def get_dealer_reviews(request, dealer_id):
+    try:
+        reviews = get_request("/fetchReviews/dealer/" + str(dealer_id))
+        for review in reviews:
+            result = analyze_review_sentiments(review["review"])
+            review["sentiment"] = result["sentiment"]
+        return JsonResponse({"status": 200, "reviews": reviews})
+    except (requests.RequestException, ValueError, KeyError) as error:
+        return proxy_error(error)
+
+
+@csrf_exempt
+@require_POST
+def add_review(request):
+    if not request.user.is_authenticated:
+        return JsonResponse(
+            {"status": 403, "message": "Unauthorized"}, status=403
+        )
+    try:
+        data = json.loads(request.body)
+        if not isinstance(data, dict):
+            raise ValueError("Expected a JSON object.")
+    except (ValueError, UnicodeDecodeError):
+        return JsonResponse(
+            {"status": 400, "message": "Invalid JSON review."}, status=400
+        )
+    try:
+        post_review(data)
+        return JsonResponse(
+            {"status": 200, "message": "Review posted successfully."}
+        )
+    except (requests.RequestException, ValueError) as error:
+        return proxy_error(error)
